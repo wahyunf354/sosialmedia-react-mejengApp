@@ -1,26 +1,26 @@
-import React from 'react';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-import {ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import themeFile from './utils/theme.js';
 import JwtDecode from 'jwt-decode';
-
+import React from 'react';
+// My CSS
+import './App.css';
 // Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
-
 // Pages
-import home from './pages/home';
-import login from './pages/login';
 import signup from './pages/signup';
-
+import login from './pages/login';
+import home from './pages/home';
 // Components
-import Navbar from './components/Navbar';
 import AuthRoute from './utils/AuthRoute';
+import Navbar from './components/Navbar';
 
+// variable style theme global yang diimport dari ./utils/theme
 const theme = createMuiTheme(themeFile);
 
+// pengecekan token yang kadarluarsa
 let authenticated;
 const token = localStorage.FBIdToken;
 if (token) {
