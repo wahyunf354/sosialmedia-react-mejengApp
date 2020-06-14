@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
   card: {
     display: 'flex',
-    marginBottom: 20
+    marginBottom: 16
   },
   image: {
     minWidth: 200
