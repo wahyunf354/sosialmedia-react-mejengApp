@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AppIcon from '../image/logo.png';
 import PropTypes from 'prop-types';
-
 // MUI Stuff
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
@@ -121,7 +120,7 @@ class signup extends Component {
               }
             <Button 
               className={ classes.button }  
-              disabled={isLoading}
+              disabled={ isLoading }
               variant="contained" 
               color="primary" 
               type="submit" 
@@ -129,7 +128,8 @@ class signup extends Component {
               Signup
               { isLoading && (
                 <CircularProgress size={27} className={ classes.loading } />
-              ) }
+                ) 
+              }
             </Button>
             <small> Already have an account? log in <Link to="/login" > here </Link> </small>
           </form>

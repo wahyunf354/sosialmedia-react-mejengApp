@@ -17,6 +17,7 @@
   },
   "plugins": ["react"],
   "rules": {
-    "semi": 1
+    "semi": 1,
+    "quotes": "warn"
   }
 }

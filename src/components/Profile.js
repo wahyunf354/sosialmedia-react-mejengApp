@@ -3,26 +3,20 @@ import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
-
 // My Component
 import EditDetails from './EditDetails';
 import MyButton from '../utils/MyButton';
-
 // MUI Stuff
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import MuiLink from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-
 // Icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
-
 // Redux
 import { connect } from 'react-redux';
 import { logout as logoutUser, uploadImage } from '../redux/actions/userAction';
@@ -32,6 +26,7 @@ const styles = (theme) => ({
   paper: {
     padding: 20
   },
+
   profile: {
     '& .image-wrapper': {
       textAlign: 'center',
@@ -68,6 +63,7 @@ const styles = (theme) => ({
       }
     }
   },
+
   buttons: {
     textAlign: 'center',
     '& a': {
@@ -102,16 +98,30 @@ class Profile extends Component {
       <Paper className={ classes.paper }>
         <div className={ classes.profile }>
           <div className="image-wrapper">
-            <img src={ imageUrl } alt="Profile" className="profile-image" />
-            <input type="file" id="imageInput" hidden="hidden" onChange={this.handleImageChange} />
-            <MyButton tip="Edit profile picture" onClick={this.handleEditPicture} btnClassName="button" >
-              <CameraAltIcon color="primary" />
+            <img 
+              src={ imageUrl } 
+              alt="Profile" 
+              className="profile-image" />
+            <input 
+              type="file" 
+              id="imageInput" 
+              hidden="hidden" 
+              onChange={this.handleImageChange} />
+            <MyButton 
+              tip="Edit profile picture" 
+              onClick={this.handleEditPicture} 
+              btnClassName="button" >
+                <CameraAltIcon color="primary" />
             </MyButton>
           </div>
           <hr/>
           <div className="profile-details">
-            <MuiLink component={ Link } to={`/users/${handle}`} color="primary" variant="body1">
-              @{ handle }
+            <MuiLink 
+              component={ Link } 
+              to={`/users/${handle}`} 
+              color="primary" 
+              variant="body1" >
+                @{ handle }
             </MuiLink>
             <hr/>
             { bio && <Typography variant="body2" > { bio } </Typography> }
@@ -146,11 +156,19 @@ class Profile extends Component {
           No profile found, please login again
         </Typography>
         <div className={ classes.buttons } >
-          <Button color="primary" variant="contained" component={ Link } to="/login" >
-            Login
+          <Button 
+            color="primary" 
+            variant="contained" 
+            component={ Link } 
+            to="/login" >
+              Login
           </Button>
-          <Button color="secondary" variant="contained" component={ Link } to="/signup" >
-            Signup
+          <Button 
+            color="secondary" 
+            variant="contained" 
+            component={ Link } 
+            to="/signup" >
+              Signup
           </Button>
         </div>
       </Paper>

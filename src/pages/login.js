@@ -3,14 +3,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AppIcon from '../image/logo.png';
 import PropTypes from 'prop-types';
-
 // MUI Stuff
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-
 // Redux Stuff
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/userAction';
@@ -95,7 +93,7 @@ class login extends Component {
               }
             <Button 
               className={ classes.button }  
-              disabled={loading}
+              disabled={ loading }
               variant="contained" 
               color="primary" 
               type="submit" 
@@ -103,7 +101,8 @@ class login extends Component {
               Login 
               { loading && (
                 <CircularProgress size={27} className={ classes.loading } />
-              ) }
+                ) 
+              }
             </Button>
             <small> don't have an account? sign up <Link to="/signup" > here </Link> </small>
           </form>
