@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 // Redux Stuff
 import { connect } from 'react-redux';
-import { postScream } from '../redux/actions/dataAction';
+import { postScream, clearError } from '../redux/actions/dataAction';
 // MUI Stuff
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -20,7 +20,8 @@ import { CircularProgress } from '@material-ui/core';
 const styles = {
   submitButton: {
     position: 'relative',
-    margin: '20px 0'
+    margin: 10,
+    float: 'right'
   },
 
   progressSpinner : {
@@ -29,7 +30,8 @@ const styles = {
 
   closeButton : {
     position: 'absolute',
-    left: '90%'
+    left: '90%',
+    top: '3%'
   }
 }
 
@@ -47,8 +49,7 @@ class PostScream extends Component {
       })
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({body: ''})
-      this.handleClose()
+      this.setState({body: '', open:false, errors: {}})
     }
   }
 
@@ -57,6 +58,7 @@ class PostScream extends Component {
   }
 
   handleClose = () => {
+    this.props.clearError();
     this.setState({ open: false, errors: {} })
   }
 
@@ -75,7 +77,7 @@ class PostScream extends Component {
     return (
       <Fragment>
         <MyButton 
-          tip="Post a scream" 
+          tip="Post a seEcream" 
           onClick={ this.handleOpen } >
             <AddIcon />
         </MyButton>
@@ -83,7 +85,7 @@ class PostScream extends Component {
           open={ this.state.open } 
           fullWidth 
           maxWidth="sm" 
-          onClose={ this.handeClose } >
+          onClose={ this.handleClose } >
             <MyButton 
               onClick={ this.handleClose } 
               tip="Close" 
@@ -111,7 +113,7 @@ class PostScream extends Component {
                     color="primary" 
                     className={ classes.submitButton } 
                     disabled={ loading } >
-                      Submit
+                      Publish
                     {
                       loading && (
                         <CircularProgress 
@@ -130,11 +132,13 @@ class PostScream extends Component {
 
 PostScream.propTypes = {
   postScream: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  clearError: PropTypes.func.isRequired
 }
 
 const mapActionToProps = {
-  postScream
+  postScream,
+  clearError
 }
 
 const mapStateToProps = (state) => ({
