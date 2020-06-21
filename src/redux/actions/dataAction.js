@@ -9,7 +9,8 @@ import {
   CLEAR_ERRORS,
   SET_ERRORS,
   SET_SCREAM,
-  STOP_LOADING_UI
+  STOP_LOADING_UI,
+  POST_COMMENT
 } from "../types";
 import axios from "axios";
 
@@ -66,15 +67,34 @@ export const postScream = (bodyScream) => (dispatch) => {
     });
 }; 
 
+// Post Comment
+export const postComment = (screamId, commentData) => (dispatch) => {
+  axios.post(`/scream/${ screamId }/comment`, commentData)
+    .then(res => {
+      dispatch({
+        type: POST_COMMENT,
+        payload: res.data
+      });
+      dispatch(clearError());
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
 // Like Screams
 export const likeScream = (screamId) => (dispatch) => {
-  axios.get(`/scream/${screamId}/like`)
+  axios.get(`/scream/${ screamId }/like`)
     .then(res => {
       dispatch({
         type: LIKE_SCREAM,
         payload: res.data
       });
-    })
+    })  
     .catch(err => console.log(err));
 };
 

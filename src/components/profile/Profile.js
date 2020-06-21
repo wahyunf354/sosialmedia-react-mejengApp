@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 // My Component
-import EditDetails from './EditDetails';
-import MyButton from '../utils/MyButton';
+import EditDetails from '../scream/EditDetails';
+import MyButton from '../../utils/MyButton';
 // MUI Stuff
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -19,7 +19,7 @@ import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 // Redux
 import { connect } from 'react-redux';
-import { logout as logoutUser, uploadImage } from '../redux/actions/userAction';
+import { logout as logoutUser, uploadImage } from '../../redux/actions/userAction';
 
 
 const styles = (theme) => ({

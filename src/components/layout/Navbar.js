@@ -8,8 +8,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 // My Component
-import MyButton from "../utils/MyButton";
-import PostScream from "./PostScream";
+import MyButton from "../../utils/MyButton";
+import PostScream from "../scream/PostScream";
 // Icons
 import HomeIcon from "@material-ui/icons/Home";
 import Notifications from "@material-ui/icons/Notifications";

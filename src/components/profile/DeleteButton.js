@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 // My component
-import MyButton from "../utils/MyButton";
+import MyButton from "../../utils/MyButton";
 // MUI Stuff
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
 // Redux 
 import { connect } from "react-redux";
-import { deleteScreams } from "../redux/actions/dataAction";
+import { deleteScreams } from "../../redux/actions/dataAction";
 
 const styles = {
   button: {

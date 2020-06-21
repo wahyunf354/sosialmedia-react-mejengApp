@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 // My Component
-import MyButton from "../utils/MyButton";
+import MyButton from "../../utils/MyButton";
 import LikeButton from "./LikeButton";
+import Comments from "./Comments";
+import CommentForm from './CommentForm';
 // MUI Stuff
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -18,12 +20,17 @@ import UnfoldMore from "@material-ui/icons/UnfoldMore";
 import ChatIcon from "@material-ui/icons/Chat";
 // Redux Stuff
 import { connect } from "react-redux";
-import { getScream } from "../redux/actions/dataAction";
+import { getScream } from "../../redux/actions/dataAction";
 
 const styles = {
   invisibleSeparator: {
     border: 'none',
-    margin: 4
+    margin: 5
+  },
+  visibleSeparator: {
+    width: "100%",
+    borderBottom: "1px solid rgba(0,0,0,0.1)",
+    marginBottom: 10
   },
   profileImage: {
     maxWidth: 200,
@@ -75,7 +82,8 @@ class ScreamDialog extends Component {
         likeCount, 
         userImage, 
         createAt, 
-        commentCount  
+        commentCount,
+        comments
       }, UI: { loading } } = this.props;
     const dialogMarkup = loading ? (
       <div className={ classes.spinnerDiv } >
@@ -109,6 +117,10 @@ class ScreamDialog extends Component {
             </MyButton>
             <span>{ commentCount } comment</span>            
         </Grid>
+        <hr className={ classes.visibleSeparator } />
+        <CommentForm screamId={ screamId } />
+        <hr className={ classes.invisibleSeparator } />
+        <Comments comments={ comments } />
       </Grid>
     )
     return (
