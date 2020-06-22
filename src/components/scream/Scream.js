@@ -66,7 +66,7 @@ class Scream extends Component {
         <Typography 
           variant="h5" 
           component={ Link } 
-          to={ `/users/${userHendle}` } 
+          to={ `/user/${userHendle}` } 
           color="primary" >{ userHendle }
         </Typography>
         { deleteButton }

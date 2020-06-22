@@ -1,7 +1,7 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 const AuthRoute = ({ component: Component, authenticated, ...rest }) => (
   <Route
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 });
 
 AuthRoute.propTypes = {
-  authenticated: PropTypes.object.isRequired
+  authenticated: PropTypes.object
 };
 
 

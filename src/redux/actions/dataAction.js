@@ -122,6 +122,25 @@ export const deleteScreams = (screamId) => (dispatch) => {
     .catch(err => console.log(err));
 };
 
+// Get User Data
+export const getUserData = (userHandle) => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
+  // Memanggil data user sesuai userhandle
+  axios.get(`/user/${userHandle}`)
+    .then(res => {
+      dispatch({
+        type: SET_SCREAMS,
+        payload: res.data.screams
+      });
+    })
+    .catch(() => {
+      dispatch({
+        type: SET_SCREAMS,
+        payload: null
+      });
+    });
+};
+
 
 export const clearError = () => (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
