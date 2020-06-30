@@ -20,7 +20,7 @@ import UnfoldMore from "@material-ui/icons/UnfoldMore";
 import ChatIcon from "@material-ui/icons/Chat";
 // Redux Stuff
 import { connect } from "react-redux";
-import { getScream } from "../../redux/actions/dataAction";
+import { getScream, clearError } from "../../redux/actions/dataAction";
 
 const styles = {
   invisibleSeparator: {
@@ -60,16 +60,35 @@ const styles = {
 
 class ScreamDialog extends Component {
   state = {
-    open: false
+    open: false,
+    oldPath: '',
+    newPath: ''
   }
 
   handleOpen = () => {
-    this.setState({ open: true })
+    let oldPath = window.location.pathname;
+
+    const { userHandle, screamId } = this.props;
+    const newPath = `/user/${ userHandle }/scream/${ screamId }`;
+
+    if (oldPath === newPath) oldPath = `/users/${ userHandle }`;
+
+    window.history.pushState(null, null, newPath);
+
+    this.setState({ open: true, oldPath, newPath });
     this.props.getScream(this.props.screamId)
   }
 
   handleClose = () => {
+    window.history.pushState(null, null, this.state.oldPath);
     this.setState({ open: false })
+    this.props.clearError();
+  }
+
+  componentDidMount () {
+    if (this.props.openDialog) {
+      this.handleOpen();
+    }
   }
 
   render () {
@@ -77,7 +96,7 @@ class ScreamDialog extends Component {
       classes, 
       scream: { 
         body, 
-        userHendle,
+        userHandle,
         screamId, 
         likeCount, 
         userImage, 
@@ -99,8 +118,8 @@ class ScreamDialog extends Component {
             component={ Link } 
             color="primary"
             variant="h5"
-            to={ `/user/${userHendle}` } >
-              @{ userHendle }
+            to={ `/user/${userHandle}` } >
+              @{ userHandle }
             </Typography>
             <hr className={ classes.invisibleSeparator } />
             <Typography variant="body2" color="textSecondary" >
@@ -157,7 +176,8 @@ ScreamDialog.propTypes = {
   userHandle: PropTypes.string.isRequired,
   UI: PropTypes.object.isRequired,
   scream: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  clearError: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -166,7 +186,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionToProps = {
-  getScream
+  getScream,
+  clearError
 };
 
 export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(ScreamDialog));

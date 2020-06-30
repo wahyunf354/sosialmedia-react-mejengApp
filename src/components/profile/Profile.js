@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 // My Component
 import EditDetails from '../scream/EditDetails';
 import MyButton from '../../utils/MyButton';
+import ProfileSkeleton from '../../utils/ProfileSkeleton';
 // MUI Stuff
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -172,7 +173,7 @@ class Profile extends Component {
           </Button>
         </div>
       </Paper>
-    ) ) : (<p>Loading...</p>);
+    ) ) : (<ProfileSkeleton/>);
 
     return profileMarkup;
   }

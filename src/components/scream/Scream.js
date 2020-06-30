@@ -45,7 +45,7 @@ class Scream extends Component {
         body, 
         createdAt, 
         userImage, 
-        userHendle, 
+        userHandle, 
         screamId, 
         likeCount, 
         commentCount 
@@ -53,7 +53,7 @@ class Scream extends Component {
         authenticated,
         credentials: { handle } 
       } } = this.props;
-    const deleteButton = authenticated && userHendle === handle ? (
+    const deleteButton = authenticated && userHandle === handle ? (
       <DeleteButton screamId={ screamId }/>
     ) : null;
     return (
@@ -66,8 +66,8 @@ class Scream extends Component {
         <Typography 
           variant="h5" 
           component={ Link } 
-          to={ `/user/${userHendle}` } 
-          color="primary" >{ userHendle }
+          to={ `/user/${userHandle}` } 
+          color="primary" >{ userHandle }
         </Typography>
         { deleteButton }
         <Typography variant="body2" color="textSecondary">
@@ -80,7 +80,7 @@ class Scream extends Component {
           <ChatIcon color="primary" />
         </MyButton>
         <span>{ commentCount } comment</span>
-        <ScreamDialog screamId={ screamId } userHandle={ userHendle } />
+        <ScreamDialog screamId={ screamId } userHandle={ userHandle } openDialog={this.props.openDialog} />
        </CardContent>
      </Card>
     );
@@ -90,7 +90,8 @@ class Scream extends Component {
 Scream.propTypes = {
   user: PropTypes.object.isRequired,
   scream: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  openDialog: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({

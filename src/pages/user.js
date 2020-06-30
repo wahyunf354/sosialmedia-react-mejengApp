@@ -9,15 +9,23 @@ import { getUserData } from '../redux/actions/dataAction';
 // My Component
 import Screams from "../components/scream/Scream";
 import StaticProfile from "../components/profile/StaticProfile";
+import ScreamSkeleton from "../utils/ScreamSkeleton";
+import ProfileSkeleton from '../utils/ProfileSkeleton';
+
 
 
 class user extends Component  {
   state = {
-    profile: null
+    profile: null,
+    screamIdParam: null
   }
 
   componentDidMount () {
     const handle = this.props.match.params.handle;
+    const screamId = this.props.match.params.screamId;
+
+    if (screamId) this.setState({ screamIdParam: screamId })
+
     this.props.getUserData(handle);
     axios.get(`/user/${ handle }`)
       .then(res => {
@@ -30,12 +38,19 @@ class user extends Component  {
 
   render () {
     const { screams, loading } = this.props.data;
+    const { screamIdParam } = this.state;
+
     const screamMarkup = loading ? (
-      <p>loading...</p>
+      <ScreamSkeleton/>
     ) : screams === null ? (
       <p>No screams from this user</p>
-    ) : (
+    ) : !screamIdParam ? (
       screams.map(scream => <Screams key={ scream.screamsId } scream={ scream } />) 
+    ) : (
+      screams.map(scream => {
+        if (scream.screamId !== screamIdParam) return <Screams key={ scream.screamsId } scream={ scream } />
+        else return <Screams key={ scream.screamsId } scream={ scream } openDialog />
+      })
     )
     return (
       <Fragment>
@@ -46,7 +61,7 @@ class user extends Component  {
           <Grid item sm={4} xs={12} >
               {
                 this.state.profile === null ? (
-                  <p>Loading...</p>
+                  <ProfileSkeleton />
                 ) : (
                   <StaticProfile profile={ this.state.profile } />
                 )

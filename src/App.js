@@ -24,6 +24,8 @@ import Navbar from "./components/layout/Navbar";
 // variable style theme global yang diimport dari ./utils/theme
 const theme = createMuiTheme(themeFile);
 
+axios.defaults.baseURL = "https://europe-west1-mejengapp-4d31f.cloudfunctions.net/api";
+
 // pengecekan token yang kadarluarsa
 const token = localStorage.FBIdToken;
 if (token) {
@@ -50,6 +52,7 @@ function App() {
               <AuthRoute path='/login' component={login} />
               <AuthRoute path='/signup' component={signup} />
               <Route exact path='/user/:handle' component={user} />
+              <Route exact path='/user/:handle/scream/:screamId' component={user} />
             </Switch>
           </div>
         </Router>
