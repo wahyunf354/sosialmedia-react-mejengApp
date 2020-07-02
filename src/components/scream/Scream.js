@@ -9,10 +9,12 @@ import MyButton from "../../utils/MyButton";
 import DeleteButton from "../profile/DeleteButton";
 import ScreamDialog from "./ScreamDialog";
 import LikeButton from "./LikeButton";
+import SpanLike from "./SpanLike";
+import SpanComment from "./SpanComment";
+import ImgProfileScream from "./ImgProfileScream";
 // MUI
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 // Icons
 import ChatIcon from "@material-ui/icons/Chat";
@@ -56,12 +58,10 @@ class Scream extends Component {
     const deleteButton = authenticated && userHandle === handle ? (
       <DeleteButton screamId={ screamId }/>
     ) : null;
+   
     return (
      <Card className={ classes.card } >
-       <CardMedia
-       image={ userImage }
-       title="Profile Image" 
-       className={ classes.image } />
+       <ImgProfileScream userImage={ userImage } />
        <CardContent className={ classes.content }>
         <Typography 
           variant="h5" 
@@ -75,11 +75,11 @@ class Scream extends Component {
         </Typography>
         <Typography variant="body1" >{ body }</Typography>
         <LikeButton screamId={ screamId } />
-        <span>{ likeCount } Likes</span>
+        <SpanLike likeCount={ likeCount } />
         <MyButton tip="comments" >
           <ChatIcon color="primary" />
         </MyButton>
-        <span>{ commentCount } comment</span>
+        <SpanComment commentCount={ commentCount }/>
         <ScreamDialog screamId={ screamId } userHandle={ userHandle } openDialog={this.props.openDialog} />
        </CardContent>
      </Card>

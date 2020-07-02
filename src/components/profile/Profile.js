@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
+import Compressor from 'compressorjs';
 // My Component
 import EditDetails from '../scream/EditDetails';
 import MyButton from '../../utils/MyButton';
@@ -77,10 +78,20 @@ class Profile extends Component {
 
   handleImageChange = (event) => {
     const image = event.target.files[0];
-    // send image to server
-    const formData = new FormData();
-    formData.append('image', image, image.name);
-    this.props.uploadImage(formData);
+    const {uploadImage} = this.props
+    // Melakukan compress img
+    new Compressor(image, {
+      quality: 0.6,
+      success(result) {
+        // send image to server
+        const formData = new FormData();
+        formData.append('image', result, result.name);
+        uploadImage(formData);
+      },
+      error(err) {
+        console.log(err.message)
+      }
+    })
   }
 
   handleEditPicture = () => {
