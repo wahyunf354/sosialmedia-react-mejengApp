@@ -33,7 +33,7 @@ const styles = {
   },
 
   content: {
-    padding: 25,
+    padding: 20,
     objectFit: "cover"
   }
 };

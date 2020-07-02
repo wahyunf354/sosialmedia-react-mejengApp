@@ -8,11 +8,13 @@ import { useTheme } from "@material-ui/core/styles";
 
 const styles = {
   imgDesktop: {
-    minWidth: 200
+    minWidth: 200,
+    borderRadius: "50%"
   },
 
   imgMobile: {
-    minWidth: 100
+    minWidth: 100,
+    borderRadius: "50%"
   }
 
 };
