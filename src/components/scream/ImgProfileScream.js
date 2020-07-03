@@ -9,14 +9,11 @@ import { useTheme } from "@material-ui/core/styles";
 const styles = {
   imgDesktop: {
     minWidth: 200,
-    borderRadius: "50%"
   },
 
   imgMobile: {
     minWidth: 100,
-    borderRadius: "50%"
-  }
-
+  },
 };
 
 const ImgProfileScream = ({ userImage, classes }) => {
@@ -24,21 +21,23 @@ const ImgProfileScream = ({ userImage, classes }) => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("sm"));
   const cardMedia = isDesktop ? (
     <CardMedia
-       image={ userImage }
-       title="Profile Image" 
-       className={ classes.imgDesktop  } />
+      image={userImage}
+      title="Profile Image"
+      className={classes.imgDesktop}
+    />
   ) : (
     <CardMedia
-       image={ userImage }
-       title="Profile Image" 
-       className={ classes.imgMobile  } />
+      image={userImage}
+      title="Profile Image"
+      className={classes.imgMobile}
+    />
   );
   return cardMedia;
 };
 
 ImgProfileScream.propTypes = {
   userImage: PropTypes.string.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ImgProfileScream);
